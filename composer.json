@@ -1,0 +1,11 @@
+{
+    "name": "mvc-php/base",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "require": {
+        "bramus/router": "^1.6"
+    }
+}
