@@ -37,10 +37,8 @@ class PostFilter {
             if(!isset($_FILES[$stringName])) {
                 return;
             }
-            $min = substr($explodedType[0], 6, strlen($explodedType[0]) - 6);
-            $min = (int) filter_var($min, FILTER_SANITIZE_NUMBER_INT);
-            $max = substr($explodedType[1], 0, strlen($explodedType[1]) - 1);
-            $max = (int) filter_var($max, FILTER_SANITIZE_NUMBER_INT);
+            $min = sanitizeMinInt($explodedType[0], strlen('image'));
+            $max = sanitizeMaxInt($explodedType[1]);
             $this->validatePicture($stringName, $min, $max);
         } else {
             if(!isset($_POST[$stringName])) {
@@ -49,22 +47,16 @@ class PostFilter {
                 return;
             }
             if(strpos($type, 'string') !== false) {
-                $min = substr($explodedType[0], 7, strlen($explodedType[0]) - 7);
-                $min = (int) filter_var($min, FILTER_SANITIZE_NUMBER_INT);
-                $max = substr($explodedType[1], 0, strlen($explodedType[1]) - 1);
-                $max = (int) filter_var($max, FILTER_SANITIZE_NUMBER_INT);
+                $min = sanitizeMinInt($explodedType[0], strlen('string'));
+                $max = sanitizeMaxInt($explodedType[1]);
                 $this->validateString($stringName, $min, $max);
             } else if(strpos($type, 'email') !== false) {
-                $min = substr($explodedType[0], 6, strlen($explodedType[0]) - 6);
-                $min = (int) filter_var($min, FILTER_SANITIZE_NUMBER_INT);
-                $max = substr($explodedType[1], 0, strlen($explodedType[1]) - 1);
-                $max = (int) filter_var($max, FILTER_SANITIZE_NUMBER_INT);
+                $min = sanitizeMinInt($explodedType[0], strlen('email'));
+                $max = sanitizeMaxInt($explodedType[1]);
                 $this->validateEmail($stringName, $min, $max);
             } else if(strpos($type, 'text') !== false) {
-                $min = substr($explodedType[0], 5, strlen($explodedType[0]) - 5);
-                $min = (int) filter_var($min, FILTER_SANITIZE_NUMBER_INT);
-                $max = substr($explodedType[1], 0, strlen($explodedType[1]) - 1);
-                $max = (int) filter_var($max, FILTER_SANITIZE_NUMBER_INT);
+                $min = sanitizeMinInt($explodedType[0], strlen('text'));
+                $max = sanitizeMaxInt($explodedType[1]);
                 $this->validateText($stringName, $min, $max);
             } else {
                 $this->isValid = false;
@@ -72,6 +64,16 @@ class PostFilter {
             }
         }
         
+    }
+    private function sanitizeMinInt($value, $length)
+    {
+        $sub = substr($value, ($length + 1), strlen($value) - ($length + 1));
+        return (int)filter_var($sub, FILTER_SANITIZE_NUMBER_INT);
+    }
+    private function sanitizeMaxInt($value)
+    {
+        $sub = substr($value, 0, strlen($value) - 1);
+        return (int)filter_var($sub, FILTER_SANITIZE_NUMBER_INT);
     }
     // less
     // greater

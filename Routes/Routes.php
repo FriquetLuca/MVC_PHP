@@ -1,17 +1,20 @@
 <?php
 namespace App\Routes;
 
-use Bramus\Router\Router;
+use App\Routes\ViewsRoutes;
 use App\Controllers\HomeController;
 use App\Controllers\AnotherPageController;
+use App\Controllers\ApiPageController;
 
-$router = new Router();
-
-$router->get('/', function() {
-    (new HomeController)->index();
-});
-$router->get('/page', function() {
-    (new AnotherPageController)->index();
-});
-
-$router->run();
+$views = new ViewsRoutes([
+    '/' => function() {
+        (new HomeController)->index();
+    },
+    '/page' => function() {
+        (new AnotherPageController)->index();
+    },
+    '/api' => function() {
+        (new ApiPageController)->index();
+    }
+]);
+$views->start();
