@@ -10,8 +10,8 @@ $views = new ViewsRoutes([
     '/' => function() {
         (new HomeController)->index();
     },
-    '/page' => function() {
-        (new AnotherPageController)->index();
+    '/page(/\d+)?' => function($pageNbr) {
+        (new AnotherPageController)->index($pageNbr);
     },
     '/api' => function() {
         (new ApiPageController)->index();

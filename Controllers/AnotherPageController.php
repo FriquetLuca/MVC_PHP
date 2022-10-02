@@ -8,8 +8,11 @@ class AnotherPageController extends Controller
     /*
     * return view
     */
-    public function index()
+    public function index($pageNbr)
     {
-        return $this->view('anotherPage', ['name' => 'MVC template']);
+        if(!isset($pageNbr)) {
+            $pageNbr = 1;
+        }
+        return $this->view('anotherPage', ['name' => 'MVC template', 'page' => $pageNbr]);
     }
 }
