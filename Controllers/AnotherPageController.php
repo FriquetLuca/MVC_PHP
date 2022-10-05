@@ -13,6 +13,6 @@ class AnotherPageController extends Controller
         if(!isset($pageNbr)) {
             $pageNbr = 1;
         }
-        return $this->view('anotherPage', ['name' => 'MVC template', 'page' => $pageNbr]);
+        return $this->view('anotherPage', ['name' => 'MVC template XXX', 'page' => $pageNbr]);
     }
 }
