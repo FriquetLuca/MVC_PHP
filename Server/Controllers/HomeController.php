@@ -3,13 +3,13 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 
-class ApiPageController extends Controller
+class HomeController extends Controller
 {
     /*
     * return view
     */
     public function index()
     {
-        return $this->view('apiPage', ['name' => 'Some name']);
+        return $this->offlineView('home', ['name' => 'MVC template']);
     }
 }

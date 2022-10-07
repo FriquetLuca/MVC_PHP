@@ -56,6 +56,14 @@ class Query {
         $req = null;
     }
     /**
+     * Prepare the db with your $query, the $exec should be a function to handle what you're gonna do with the request variable.
+     */
+    public function prepare($query, $exec) {
+        $req = $this->db->prepare($query);
+        $exec($req);
+        $req = null;
+    }
+    /**
      * Kill the PDO connection.
      */
     public function kill() {

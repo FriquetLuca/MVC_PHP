@@ -2,10 +2,11 @@
     "name": "mvc-php/base",
     "autoload": {
         "psr-4": {
-            "App\\": "./"
+            "App\\": "./Server/"
         }
     },
     "require": {
-        "bramus/router": "^1.6"
+        "bramus/router": "^1.6",
+        "rakit/validation": "^1.4"
     }
 }

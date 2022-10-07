@@ -10,9 +10,9 @@ class AnotherPageController extends Controller
     */
     public function index($pageNbr)
     {
-        if(!isset($pageNbr)) {
-            $pageNbr = 1;
-        }
-        return $this->view('anotherPage', ['name' => 'MVC template XXX', 'page' => $pageNbr]);
+        return $this->offlineView('anotherPage', [
+            'name' => 'MVC template XXX',
+            'page' => $this->pageNumber($pageNbr)
+        ]);
     }
 }
