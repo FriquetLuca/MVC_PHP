@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Query;
 
 class HomeController extends Controller
 {
@@ -10,6 +11,7 @@ class HomeController extends Controller
     */
     public function index()
     {
+        $db = new Query('cogip');
         return $this->offlineView('home', ['name' => 'MVC template']);
     }
 }

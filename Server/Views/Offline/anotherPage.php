@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php require ('_shared/offline_head.php');?>
+        <?php require (__VIEW__ . '_shared/offline_head.php'); ?>
     </head>
     <body>
         <header>My <?php echo $name; ?> at page <?php echo $page; ?> inside another page.
