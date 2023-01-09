@@ -1,202 +1,72 @@
-# Strategy-PHP
+# PHP - MVC template
+
+> A vanilla PHP project with TypeScript and SASS. It's implementend using the Model-View-Controller pattern.
 
 ## Index
 
-- [How to start](#howtostart)
-- [All paths](#allpaths)
-    - [Front-end](#frontend)
-        - [Public files](#publicfiles)
-            - [SCSS](#scss)
-            - [Pictures](#pictures)
-            - [JavaScript](#javascript)
-        - [Views](#views)
-    - [Back-end](#backend)
-- [Design](#design)
-- [Implemented](#implemented)
-    - [Database](#database)
-    - [Controllers](#controllers)
-    - [Core](#core)
-        - [Directives](#directives)
-        - [Query](#query)
-            - [UsualSQL](#usualsql)
-        - [Routes](#routes)
-        - [Validation](#validation)
+- [Introduction](#introduction)
+- [Guide](#guide)
+    - [Installation](#installation)
+    - [Development](#development)
+    - [Production](#production)
+    - [Workflow](#workflow)
 
-## [How to start](#howtostart)
+## [Introduction](#introduction)
 
-1. Install the dependances
+This project is made using `NodeJS`, `rsync` and `composer`. You must install all of them to be able to use this project.
+It's entire point is to focus on developing pages or API with PHP without bothering with setting up a base.
 
-Copy the file `Query.php` who's located at `_tmp/Query.php` to end up with the path `Server/Controllers/Core/Query.php`.
-Once it's done, go inside the `Query.php` file and change your host, user and pswd (password) settings in the constructor:
-```php
-public function __construct($dbName = "", $host = "localhost", $user = 'root', $pswd = '') {
-```
+## [Guide](#guide)
 
-You shouldn't change the `$dbName` variable. Once it's done, go to the terminal and install the rest of dependances:
-```terminal
+### [Installation](#installation)
+
+The first thing is to install the dependencies.
+To do this, just enter the command:
+```bash
+npm install
 composer install
 ```
-
-2. Launch the project
-
-Use the command:
-```terminal
-php -S localhost:8080 -t public
+Once it's done, you'll have to create a `.env` file in the project's root with the following content:
 ```
-Or just use XAMPP or something like that and put the project inside the right folder.
-
-## [All paths](#allpaths)
-
-### [Front-end](#frontend)
-
-You can access the front-end ressources easily in the `public/assets/` folder.
-If you want to have access to a ressources from a view, then you'll need to checkout the path.
-
-In the case you're using a `src` path, then you can directly linked it with the following :
-```
-assets/YOUR_PATH
+TITLE="The title of your project"
+HOST=localhost
+PORT=80
+USERNAME=your_username
+PASSWORD=y0ur_p4$$w0rd
 ```
 
-For any `href` content, you're gonna have to keep in mind your possible paths or just tracking it. If you're having a path such as:
-```
-http://myWebsite.com/
-http://myWebsite.com/myPage
-```
-you're gonna be fine just using `./assets/` as an `href` but links can be more trikky like:
-```
-http://myWebsite.com/specialPage/subPage
-```
-Since it's a page inside a page and not a getting parameter, we're gonna need to use `./../assets/` or going back as much as needed to get the assets access.
+- `Title`: It's the title of your project that's gonna be showned in a browser.
+- `HOST`: It's your host.
+- `PORT`: The port the server listen to.
+- `USERNAME`: Your MySQL username.
+- `PASSWORD`: Your MySQL password.
 
-#### [Public files](#publicfiles)
+### [Development](#development)
 
-##### [SCSS](#scss)
-All `.scss` must be at :
-```
-public/assets/scss
-```
-the only exception at the moment being:
-```
-public/assets/style.scss
-```
+The project is already setup for development.
+You can use a bunch of `npm run` commands for the project, but there's three specific command to know:
 
-##### [Pictures](#pictures)
-All `images` must be at :
-```
-public/assets/img
-```
+1. `npm run dev`: This command allow you to directly focus on developing. It's going to build the project if it's not already done and run the server. Every changes is going to be detected and TypeScript / SASS files are gonna be transpiled.
+2. `npm run build`: Build the project.
+3. `npm run start`: Start the server to test the project.
 
-##### [JavaScript](#javascript)
-All `.js` must be at :
-```
-public/assets/scripts
-```
+### [Production](#production)
 
-#### [Views](#views)
+For production, you must change the line `mode: 'development'` in `webpack.config.js` to `mode: 'production'`.
+Once it's done, build the project.
 
-All views are `.php` pages containing the look of the website and any dynamic generated content depending on the datas given by the controller.
+### [Workflow](#workflow)
 
-Shared ressources:
-```
-Server/Views/_shared
-```
-API:
-```
-Server/Views/API
-```
-Offline views:
-```
-Server/Views/Offline
-```
-Online views:
-```
-Server/Views/Online
-```
+The workflow is divided into multiple parts.
 
-### [Back-end](#backend)
+#### [Assets](#assets)
 
-The routes give us a specific path to go on the website. The controller is made to check, validate and give back a view from any visit or given datas on the route.
+All your assets are located inside `public/assets/`.
+You can use `assets` to store your own assets for your project.
+Since you won't put code inside `assets` yourself (in theory, since you would probably use TypeScript since the project is made to use it after all), there's two folder you shouldn't touch (except if you know what you're doing): `scripts` and `styles`.
+Another rule is that no `public/stylesheets/` folder should exist. It's used in the backgroud as a ghost directory for a temporary storage when there's a need to transpile some SASS content with autoprefixer.
 
-Controllers:
-```
-Server/Controllers
-```
-Routes:
-```
-Server/Routes
-```
+#### [Templates](#templates)
 
-There's also some `.php` files or any other kind of scripts that could be executed at a specific time, thoses should be in the CRON folder.
-
-CRON:
-```
-Server/CRON
-```
-
-## [Design](#design)
-The HTML design must be made as simple as possible, as pure as possible and should be rendered as good as possible.
-As such, design the mobile view first (don't go under 320px width, that's bullshit) then the desktop view (640px up to 3840px).
-
-## [Implemented](#implemented)
-
-### [Database](#database)
-Nothing.
-
-### [Controllers](#controllers)
-Nothing, there's just a bunch of examples.
-
-### [Core](#core)
-
-#### [Directives](#directives)
-
-Root directive:
-The root directive is a directive you can explicitly write that return a string containing the path of the project's root.
-```php
-echo __ROOT__;
-```
-
-View directive:
-The view directive is a directive you can explicitly write that return a string containing the path of the project's view folder.
-```php
-echo __VIEW__;
-```
-
-#### [Query](#query)
-
-Query is made so any communication with the database could be made as simple as possible.
-```php
-$db = new Query('my_DB_Name');
-$rows = $db->fetchAll("SELECT * FROM someTable"); // Get multiples rows
-$row = $db->fetchAssoc("SELECT * FROM someTable where id=5", [ 5 ]); // Get a single row
-$username = $db->fetchColumn("SELECT username FROM someTable where id=?", [ 5 ]); // Get a single column value
-$db->execute("DELETE FROM students WHERE idStudent=?", [ 2 ]); // Execute a query
-$db->kill(); // Kill the connection to the database when you don't need any access to it anymore.
-```
-
-Query can also do transactions (SELECT, UPDATE and DELETE since any other will trigger a commit), so you could do multiple operations and if one of them fail, then they will all fails.
-```php
-$db->transaction([
-    "select * from user", [],
-    "select id from company where user=? and age=?", ['Arnold', 17 ]
-]);
-```
-
-You could also just use the `prepare($query, $exec)` function to do anything else you want after that.
-```php
-$db->prepare("SELECT", function($req) {
- // Do something with your request.
-});
-```
-
-##### [UsualSQL](#usualsql)
-
-UsualSQL contain some pre-made SQL query to make the work faster.
-
-#### [Routes](#routes)
-
-All routes are made with Bramus.
-They're located inside `Server/Routes/Routes.php`, more infos about what you can do for routes are inside [Bramus](https://github.com/bramus/router) documentation.
-
-#### [Validation](#validation)
-
-The validation of all datas comming from the user should be done with [rakit/validation](https://github.com/rakit/validation) inside the controller.
+Templates are made in this workflow in a way that create an HTML structure for your project, then inject some view into it.
+Since you could use multiple templates for a single project, you'll be locating your templates inside the `Server/Views/Templates` directory.

@@ -2,15 +2,12 @@
 
 namespace App\Core;
 use PDO;
-use Dotenv\Dotenv;
 
 class Query {
     private $db;
     public function __construct($dbName) {
         try
         {
-            $dotenv = Dotenv::createImmutable(__ROOT__);
-            $dotenv->safeLoad();
             $host = $_ENV['HOST'];
             // On se connecte à MySQL
             $this->db = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8", $_ENV['USERNAME'], $_ENV['PASSWORD']);

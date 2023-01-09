@@ -11,7 +11,11 @@ class HomeController extends Controller
     */
     public function index()
     {
-        $db = new Query('cogip');
-        return $this->offlineView('home', ['name' => 'MVC template']);
+        if($this->isConnected()) {
+            // Suppose you're connected, redirect to some page
+            return $this->view('Home/home', ['name' => 'MVC template']);
+        } else {
+            return $this->view('Home/home', ['name' => 'MVC template']);
+        }
     }
 }

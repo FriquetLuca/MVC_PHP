@@ -1,0 +1,24 @@
+# files to ignore
+.env
+.gitignore
+.rsync-exclude
+README.md
+composer.json
+tsconfig.json
+package.json
+package-lock.json
+composer.lock
+gulpfile.js
+webpack.config.js
+
+# directories to ignore
+node_modules/
+Client/
+
+# extensions to ignore
+*.ts
+*.tsx
+*.sass
+*.scss
+*.md
+*.example

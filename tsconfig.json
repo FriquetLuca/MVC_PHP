@@ -1,0 +1,21 @@
+{
+    "type": "commonjs",
+    "compilerOptions": {
+      "sourceMap": true,
+      "rootDir": "Server/Views/",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "ES2016",
+      "moduleResolution": "node",
+      "allowJs": true,
+      "outDir": "public/assets/scripts/components/",
+      "baseUrl": "Server/Views/Pages/",
+      "strict": true,
+      "removeComments": true
+    },
+    "include": ["Server/Views/Pages/**/*"],
+    "exclude": [
+      "node_modules/**/*",
+      "Server/Views/Templates/**/*",
+    ]
+  }

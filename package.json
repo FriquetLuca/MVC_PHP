@@ -1,0 +1,28 @@
+{
+  "name": "php-mvc-template",
+  "version": "0.0.0",
+  "description": "A basic MVC with PHP, SASS and TypeScript",
+  "scripts": {
+    "sass": "(sass ./Server/Views/Pages:./public/stylesheetsComp --no-source-map --style compressed) && (postcss public/stylesheetsComp/ --dir ./public/assets/styles/components/ --use autoprefixer) && (rm -rf public/stylesheetsComp)",
+    "sassBundle": "(sass ./Server/Views/Templates/Stylesheets:./public/stylesheets --no-source-map --style compressed) && (postcss public/stylesheets/ --dir ./public/assets/styles/ --use autoprefixer) && (rm -rf public/stylesheets)",
+    "webpack": "webpack",
+    "tsc": "(rm -rf public/assets/scripts/components/) && tsc",
+    "build": "npm run tsc && npm run webpack && npm run sass",
+    "start": "php -S localhost:8080 -t public",
+    "dev": "gulp"
+  },
+  "license": "ISC",
+  "browserslist": "last 100 versions",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "gulp": "^4.0.2",
+    "postcss": "^8.4.20",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.57.1",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
