@@ -13,7 +13,7 @@
 <?php
         }
 ?>
-        <script src="/assets/scripts/bundle.js" type="module"></script>
+        <script src="/assets/scripts/bundle.js" defer></script>
 <?php
         if(file_exists(__VIEW__ . "/Pages/$viewName.ts")) {
 ?>
@@ -23,12 +23,18 @@
 ?>
     </head>
     <body>
-        <header>The header of the page.</header>
+        <header>
+<?php 
+            require_once __VIEW__ . "/Templates/Components/offlineHeader.php";
+?>
+        </header>
         <main>
 <?php 
             require_once __VIEW__ . "/Pages/$viewName.php";
 ?>
         </main>
-        <footer>The footer of the page.</footer>
+<?php 
+            require_once __VIEW__ . "/Templates/Components/offlineFooter.php";
+?>
     </body>
 </html>

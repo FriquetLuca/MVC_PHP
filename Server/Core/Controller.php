@@ -17,14 +17,14 @@ class Controller
         }
         return $isConnected;
     }
-    protected function view($viewName, $data = [], $template = "index") {
-        $data['_CONNECTED'] = $this->isConnected();
-        extract($data);
+    protected function view($viewName, $datas = [], $template = "index") {
+        $datas['_CONNECTED'] = $this->isConnected();
+        extract($datas);
         require_once __VIEW__ . "Templates/Pages/$template.php";
     }
-    protected function api($view, $data = []) {
-        $data['_CONNECTED'] = $this->isConnected();
-        extract($data);
+    protected function api($view, $datas = []) {
+        $datas['_CONNECTED'] = $this->isConnected();
+        extract($datas);
         require_once __VIEW__ . "API/$view.php";
     }
 }

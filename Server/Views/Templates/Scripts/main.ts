@@ -1,1 +1,1 @@
-console.log("App running! ;D");
+console.log("App running! èwé");

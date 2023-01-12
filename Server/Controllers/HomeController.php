@@ -1,8 +1,5 @@
 <?php
-namespace App\Controllers;
-
 use App\Core\Controller;
-use App\Core\Query;
 
 class HomeController extends Controller
 {

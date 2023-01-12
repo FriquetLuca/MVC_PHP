@@ -54,7 +54,7 @@ gulp.task('server', serverCb);
 // This task will run `tsc` on any .ts, .tsx, or .js file that is changed inside the Server/Views/Pages directory
 gulp.task('typescript', (cb) => {
   exec('npm run tsc', callbackLog(cb));
-  return gulp.watch('Server/Views/Pages/**/*.{ts,tsx,js}', gulp.series('typescript'));
+  return gulp.watch('Server/Views/Pages/**/*.{ts,tsx,js,jsx,mjs,mts}', gulp.series('typescript'));
 });
 
 // This task will run `npm run sass` on any .sass, .scss, or .css file that is changed inside the Server/Views/Pages directory
